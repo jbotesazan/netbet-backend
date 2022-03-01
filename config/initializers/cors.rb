@@ -5,12 +5,22 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
-# Rails.application.config.middleware.insert_before 0, Rack::Cors do
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins "http://localhost4000"
+
+    resource "*",
+      headers: :any,
+      methods: [:get, :post, :put, :patch, :delete, :options, :head],
+      credentials: true
+  end
+
 #   allow do
-#     origins "example.com"
-#
+#     origins "Whatever the heroku app is"
+
 #     resource "*",
 #       headers: :any,
-#       methods: [:get, :post, :put, :patch, :delete, :options, :head]
+#       methods: [:get, :post, :put, :patch, :delete, :options, :head],
+#       credentials: true
 #   end
-# end
+end
